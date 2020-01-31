@@ -1,7 +1,7 @@
 # Protocolos
 Gerador e gerenciador de protocolos criado em Nodejs 
 
-Dependeces: express, mongodb, handlebars and more...
+Dependeces: express, express-session, connect-flash, mongodb, handlebars, body-parser and more...
 
 Projeto visa empresas que necessitam gerar protocolos de atendimento aos seus clientes, ou seja, uma documentacao completa do processo de atendimento do comeco ao fim.
 
