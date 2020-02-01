@@ -1,17 +1,17 @@
-<h2>Lista de empresas</h2>
+<h2>Lista de protocolos: </h2>
 <hr>
-<a href="/admin/categorias/add"><button class="btn btn-success">Nova empresa</button></a>
-
-{{#each categorias}}
+<a href="/admin/postagens/add"><button class="btn btn-success">Novo protocolo</button></a>
+{{#each postagens}}
     <div class="card mt-4">
-        <div class="card-body pb-0">
-            <h4>{{nome}}</h4>
-            <small>{{slug}}</small><br><hr>
+        <div class="card-body pb-0 pt-0">
+             <h5 class="pb-0 mb-0">{{empresa.nome}}</h5><hr class="mt-0 ">
+            <h3>{{titulo}}</h3>
+            <small>{{conteudo}}</small><br><hr>
                   <div class="form-inline mb-2">
-                <form class="mr-2" action="/admin/categorias/edit/{{_id}}">
+                <form class="mr-2" action="/admin/postagens/edit/{{_id}}">
                     <button class="btn btn-success">Editar</button>
                 </form>
-                <form action="/admin/categorias/deletar" method="POST">
+                <form action="/admin/postagens/deletar/{{_id}}" method="GET">
                     <input type="hidden" name="id" value="{{_id}}">
                     <button class="btn btn-danger">Deletar</button>
                 </form>
