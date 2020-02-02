@@ -1,7 +1,18 @@
-<h2>Lista de protocolos: </h2>
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+{{/each}}
+
+<h2>Pesquisa: </h2>
 <hr>
-<a href="/admin/postagens/add"><button class="btn btn-success">Novo protocolo</button></a>
-{{#each postagens}}
+ <div class="class">
+     <form action="/admin/search" method="get">
+     <label class="mt-5"for="search">Pesquisar: </label>
+ <input type="text" name="search" id="search" class="form-control">
+ <button class="btn btn-success mt-3">Pesquisar</button>
+ </form>
+ </div>
+    {{#each postagens}}
     <div class="card mt-4">
         <div class="card-body pb-0 pt-0">
              <h5 class="pb-0 mb-0">{{empresa.nome}}</h5><hr class="mt-0 ">
@@ -11,7 +22,7 @@
                 <form class="mr-2" action="/admin/postagens/edit/{{_id}}">
                     <button class="btn btn-success">Editar</button>
                 </form>
-                <form action="/admin/postagens/deletar/{{_id}}" method="get">
+                <form action="/admin/postagens/deletar/{{_id}}" method="GET">
                     <input type="hidden" name="id" value="{{_id}}">
                     <button class="btn btn-danger">Deletar</button>
                 </form>
@@ -22,5 +33,5 @@
     </div>
 
 {{else}}
-    <div class="card-body mt-5 pt-5"><hr><h4 class="mt-5 pt-5">Nenhuma empresa registrada.</h4></div>
+    <div class="card-body mt-5 pt-5"><hr><h4 class="mt-5 pt-5">Nenhum protocolo encontrado.</h4></div>
 {{/each}}

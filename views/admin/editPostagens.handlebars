@@ -5,9 +5,9 @@
 
 <div class="card">
     <div class="card-body">
-        {{postagem}}
+
         <h2>Editar protocolo: </h2><hr>
-        <form action="/admin/postagens/edit" method="POST">Empresas:
+        <form action="/admin/postagens/edit" method="post">Empresas:
            <input type="hidden" value="{{postagem._id}}" name="id">
            <select class="custom-select" name="empresa" id="empresa">
            {{#each empresa}}

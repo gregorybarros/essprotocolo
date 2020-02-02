@@ -10,6 +10,25 @@ router.get('/', (req, res) => {
     res.render('admin/index')
 })
 
+router.get("/search", (req, res) => {
+let test = req.query.search
+erros = []
+if (!test || typeof test == undefined || test==null) {
+erros.push({texto:'Preencha o campo de pesquisa'})
+    res.render('admin/search', {erros})}
+    else{
+
+       Postagem.find({titulo:{$regex:`${test}`}}).lean().populate("empresa").sort({data:"desc"}).then((postagens) => {
+            res.render("admin/search", {postagens})
+            console.log(test.length)
+        }).catch((err) => {
+            req.flash("error_msg", "Houve um erro ao realizar pesquisa!")
+            
+        })
+       
+    }})
+    
+
 router.get('/posts', (req, res) => {
     res.send('Pagina de posts')
 })
@@ -62,7 +81,7 @@ router.post('/categorias/nova', (req, res) => {
 
 router.get("/categorias/edit/:id", (req, res) => {
     Categoria.findOne({_id: req.params.id}).lean().then((categorias) => {
-        res.render('admin/editCategorias', {categorias: categorias})
+        res.render('admin/editCategorias', {categorias})
     }).catch((err) => {
         req.flash("error_msg", "Esta categoria nao existe")
         res.redirect("/admin/categorias")
@@ -205,7 +224,7 @@ router.post("/postagens/edit", (req, res) => {
 })
 
 router.get("/postagens/deletar/:id", (req, res) => {
-    Postagem.remove({_id: req.params.id}).then(()=> {
+    Postagem.deleteOne({_id: req.params.id}).then(()=> {
         res.redirect("/admin/postagens")
     })
 })

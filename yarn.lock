@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@handlebars/allow-prototype-access@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@handlebars/allow-prototype-access/-/allow-prototype-access-1.0.1.tgz#412f3b5c1e2a5a692097cf5ac61588302e38020c"
+  integrity sha512-6iliYzH1VuYfMJYdDCIeRbtqf0b5Zv2tp4Uks1t9ZSLRAsEZNfDFjAvio3GWo5MlyGMrfsJS9h0TxOJYqwzlwQ==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
