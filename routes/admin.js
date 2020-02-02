@@ -168,14 +168,9 @@ router.post("/postagens/nova", (req, res) => {
 })
 
 router.get("/postagens/edit/:id", (req, res) => {
-
-    Postagem.findOne({_id: req.params.id}).lean().then((postagem) => {
-        console.log(postagem.empresa)
-        Categoria.find().lean().then((empresa) => {
-            
-                
+   Postagem.findOne({_id: req.params.id}).lean().then((postagem) => {
+      Categoria.find({_id: postagem.empresa}).lean().then((empresa) => {
             res.render("admin/editpostagens", {empresa, postagem})
-            console.log(empresa._id)
         }).catch((err) => {
             req.flash("error_msg", "Houve um erro ao listar empresas!")
             res.redirect("/admin/postagens")
@@ -184,7 +179,7 @@ router.get("/postagens/edit/:id", (req, res) => {
         req.flash("error_msg", "Houve um erro ao carregar formulario!")
         res.redirect("/admin/postagens")
     })
-    
+
 })
 
 router.post("/postagens/edit", (req, res) => {
