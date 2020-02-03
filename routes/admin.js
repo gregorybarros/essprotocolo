@@ -188,8 +188,10 @@ router.post("/postagens/nova", (req, res) => {
 
 router.get("/postagens/edit/:id", (req, res) => {
    Postagem.findOne({_id: req.params.id}).lean().then((postagem) => {
-      Categoria.find({_id: postagem.empresa}).lean().then((empresa) => {
-            res.render("admin/editpostagens", {empresa, postagem})
+      Categoria.find().lean().then((empresa) => {
+          Categoria.findOne({_id:postagem.empresa}).lean().then((setEmpresa)=>{
+            res.render("admin/editpostagens", {empresa, postagem, setEmpresa})
+          })            
         }).catch((err) => {
             req.flash("error_msg", "Houve um erro ao listar empresas!")
             res.redirect("/admin/postagens")
