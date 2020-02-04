@@ -5,6 +5,7 @@ const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const index = express()
 const admin = require('./routes/admin')
+const usuario = require('./routes/usuario')
 const path = require('path')
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -60,11 +61,7 @@ mongoose.connect("mongodb://localhost/teste", {
     })
 
     index.get('/login', (req, res) => {
-        res.send('Rota de login')
-    })
-
-    index.get('/registro', (req, res) => {
-        res.send('Rota de registro')
+        res.render('outras/login')
     })
 
     index.get('/perfiledit', (req, res) => {
@@ -103,8 +100,8 @@ mongoose.connect("mongodb://localhost/teste", {
         res.send("Erro 404!")
     })
 
-
     index.use('/admin', admin)
+    index.use('/usuario', usuario)
 
 // Outros
 const PORT = 8081

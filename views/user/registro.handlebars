@@ -1,0 +1,102 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+{{/each}}
+<div class="card mt-4">
+     <div class="card-body p-3 pt-0">
+<h2>Novo registro: </h2>
+<hr>
+
+    <form action="/usuario/registro" method="POST">   
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationServer01">Primeiro nome</label>
+      <input type="text" class="form-control is-valid" id="validationServer01" name="nome" value="Mark" required>
+      <div class="valid-feedback">
+        Boa!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationServer02">Sobrenome</label>
+      <input type="text" class="form-control is-valid" id="validationServer02" name="sobrenome" value="Otto" required>
+      <div class="valid-feedback">
+        Boa!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationServerUsername">E-mail</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend3">@</span>
+        </div>
+        <input type="email" class="form-control is-invalid" name="email" id="validationServerUsername" aria-describedby="inputGroupPrepend3" required>
+        <div class="invalid-feedback">
+          Por favor insira o e-mail.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationServer03">Cidade</label>
+      <input type="text" class="form-control is-invalid" id="validationServer03" name="cidade" required>
+      <div class="invalid-feedback">
+        Por favor insira sua cidade.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationServer04">Estado</label>
+      <select class="custom-select is-invalid" id="validationServer04">
+        <option  value="sp" name="estado">SP</option>
+      </select>
+      <div class="invalid-feedback">
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationServer05">CEP</label>
+      <input type="text" class="form-control is-invalid" id="validationServer05" name="cep" required>
+      <div class="invalid-feedback">
+        Por favor digite um CEP valido.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Endereco</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="endereco" required>
+  </div>
+   <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Senha</label>
+      <input type="password" class="form-control" id="inputPassword4" name="senha" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Senha</label>
+      <input type="password" class="form-control" id="inputPassword4" name="senha2" required>
+    </div>
+  </div>
+  <form>
+  <div class="form-row">
+    <div class="col">
+        <label class="" for="genero">Data de nascimento</label>
+      <input type="date" class="form-control" placeholder="Date" name="dataNas" required>
+    </div>
+    <div class="col">
+        <label class="" for="genero">Data de admissao</label>
+      <input type="date" class="form-control" placeholder="Date" name="dataAdm" required>
+    </div>
+  </div>
+</form>
+<label class="mb-3" for="genero">Genero</label>
+ <div class="form-check form-check-inline mt-4">
+  <input class="form-check-input ml-2" type="checkbox" id="inlineCheckbox1" value="option1">
+  <label class="form-check-label" for="inlineCheckbox1">Masculino</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+    <label class="form-check-label" for="inlineCheckbox1">Feminino</label>
+</div>
+
+</form>
+
+       
