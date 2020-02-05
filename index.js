@@ -13,20 +13,31 @@ require('./models/Postagem')
 const Postagem = mongoose.model('postagens')
 require('./models/Postagem')
 const Categoria = mongoose.model('categorias')
+const passport = require('passport')
+require('./config/auth')(passport)
+const {eUser} = require('./helpers/eAdmin')
+
 
 //Configuracoes
-    // Session / flash
+    // Session / Passport / flash 
     index.use(session({
         secret: "essprotocolos",
         resave: true,
         saveUninitialized: true
     }))
+
+    index.use(passport.initialize())
+    index.use(passport.session())
+
     index.use(flash())
     
     // Middlewares
     index.use((req, res, next) => {
         res.locals.success_msg = req.flash('success_msg')
         res.locals.error_msg = req.flash('error_msg')
+        res.locals.error = req.flash('error')
+        res.locals.user = req.user || null
+        
     next()
     })        
     //body-parses
@@ -51,9 +62,15 @@ mongoose.connect("mongodb://localhost/teste", {
     index.use(express.static(path.join(__dirname,'public')))
 
 // Rotas
-    index.get('/', (req, res) => {
+    index.get('/', eUser, (req, res) => {
+        const userName = req.user.nome
+        if (req.user.eAdmin == 1){
+            adm = true
+        }else{
+            adm = false
+        }
         Postagem.find().lean().populate("empresa").sort({data: "desc"}).then((postagens) => {
-            res.render('index', {postagens})  
+            res.render('index', {postagens, userName, adm})  
         }).catch((err) => {
             req.flash("error_msg", "Houve um erro ao listar postagens!")
             res.redirect("/404")
@@ -64,11 +81,19 @@ mongoose.connect("mongodb://localhost/teste", {
         res.render('outras/login')
     })
 
-    index.get('/perfiledit', (req, res) => {
+    index.post("/login", (req, res, next) =>{
+        passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/login',
+            failureFlash: true
+        })(req, res, next)
+    })
+
+    index.get('/perfiledit', eUser, (req, res) => {
         res.send('Rota de editar perfil')
     })
 
-    index.get("/postagens", (req, res) => {
+    index.get("/postagens", eUser, (req, res) => {
         Postagem.find().lean().populate("empresa").sort({data:"desc"}).then((postagens) => {
             res.render("user/userpostagens", {postagens})
         }).catch((err) => {
@@ -78,9 +103,15 @@ mongoose.connect("mongodb://localhost/teste", {
        
     })
 
-    index.get('/categorias', (req, res) => {
+    index.get('/categorias', eUser, (req, res) => {
+        if (req.user.eAdmin == 1){
+            adm = true
+        }else{
+            adm = false
+        }
+        console.log(adm)
         Categoria.find().lean().sort({date:'desc'}).then((categorias) => {
-            res.render("user/usercategorias", {categorias})              
+            res.render("user/usercategorias", {categorias, adm})              
         }).catch((err) => {
             req.flash("error_msg", "Houve um erro ao listar as categorias" + err)
             res.redirect("/admin")
@@ -88,11 +119,11 @@ mongoose.connect("mongodb://localhost/teste", {
         
     })
 
-    index.get('/categorias/postagens', (req, res) => {
+    index.get('/categorias/postagens', eUser, (req, res) => {
         res.send('Rota de protocolos da empresa')
     })
 
-    index.get('/ajuda', (req, res) => {
+    index.get('/ajuda', eUser, (req, res) => {
         res.send('Rota de ajuda')
     }) 
 

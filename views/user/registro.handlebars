@@ -2,13 +2,13 @@
     <div class="alert alert-danger">{{texto}}</div>
 {{else}}
 {{/each}}
-<div class="card mt-4">
+<div class="card mt-4 border border-secondary">
      <div class="card-body p-3 pt-0">
 <h2>Novo registro: </h2>
 <hr>
 
     <form action="/usuario/registro" method="POST">   
-    <button class="btn btn-primary" type="submit">Submit form</button>
+  <div>
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationServer01">Primeiro nome</label>
@@ -47,8 +47,8 @@
     </div>
     <div class="col-md-3 mb-3">
       <label for="validationServer04">Estado</label>
-      <select class="custom-select is-invalid" id="validationServer04">
-        <option  value="sp" name="estado">SP</option>
+      <select class="custom-select is-invalid" id="validationServer04" name="estado">
+        <option  value="sp" id= "validationServer04" name="estado"selected>SP</option>
       </select>
       <div class="invalid-feedback">
       </div>
@@ -77,26 +77,27 @@
   </div>
   <form>
   <div class="form-row">
-    <div class="col">
+    <div class="col-3">
         <label class="" for="genero">Data de nascimento</label>
       <input type="date" class="form-control" placeholder="Date" name="dataNas" required>
     </div>
-    <div class="col">
+    <div class="col-3">
         <label class="" for="genero">Data de admissao</label>
       <input type="date" class="form-control" placeholder="Date" name="dataAdm" required>
     </div>
-  </div>
-</form>
-<label class="mb-3" for="genero">Genero</label>
- <div class="form-check form-check-inline mt-4">
-  <input class="form-check-input ml-2" type="checkbox" id="inlineCheckbox1" value="option1">
+    <label class="mt-4 pb-1- ml-5" for="genero"><p>Genero:</p></label>
+ <div class="form-check form-check-inline ml-2">
+  <input class="form-check-input ml-2" type="radio" id="inlineCheckbox1" name="sexo" value="masculino" checked>
   <label class="form-check-label" for="inlineCheckbox1">Masculino</label>
 </div>
 <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-    <label class="form-check-label" for="inlineCheckbox1">Feminino</label>
+    <input class="form-check-input" type="radio" id="inlineCheckbox2" name="sexo" value="feminino">
+    <label class="form-check-label" for="inlineCheckbox2">Feminino</label>
 </div>
-
+<button class="btn bg-success text-white ml-4 pl-5 pr-5" type="submit">Registrar!</button>
+  </div>
+</form>
+</div>
 </form>
 
        

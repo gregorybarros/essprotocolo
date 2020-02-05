@@ -1,20 +1,25 @@
-<div class="jumbotron">
-  <h1 class="display-4">Ola, Gregory! =D</h1>
+<div class="jumbotron border order border">
+  <h1 class="display-4">Ola, {{userName}}! ;D</h1>
   <p class="lead">Nesta tela teremos: <br>Usuario: Avatar, nome, data e hora, qtd prots mes, prots total, data entrada, 8 ultimos posts <br>Avisos e alertas</p>
   <hr class="my-4">
-  <p>/login <br>
-/registro = Nome, e-mail, senha, data de entrada, foto <br>
-/postagens = todos protocolos <br>
-/postagens/categorias = protocolos empresa</p>
-  <a class="btn btn-primary btn-lg" href="/admin/postagens/add" role="button">Novo protocolo</a>
+  /principal = reestilizar, informacoes usuario <br>
+/postagens = Botao editar excluir, regra negocio <br>
+/admin = botao registro, editar usuarios <br>
+// confirmacao delete <br>
+/search = aprimorar pesquisa <hr>
+{{#if adm}}
+  <a class="btn btn-warning btn-lg" href="/admin" role="button">Admin area</a>
+  <a class="btn btn-warning btn-lg" href="/admin/categorias" role="button">Admin empresas</a>
+  <a class="btn btn-warning btn-lg" href="/admin/protocolos" role="button">Area protocolos</a>
+  {{/if}}
 </div>
 <hr>
 <h2>Protocolos recentes: </h2>
 {{#each postagens}}
-<div class="card mt-5">
-    <div class="cardy-body m-3">
-        {{empresa.nome}}
-        <h3>{{titulo}}</h3>
+<div class="card mt-5 p-1 border">
+    <div class="cardy-body m-2 ml-4 mr-4">
+        <a href="" class="text-primary">{{empresa.nome}}</a>
+        <h3 class="mt-1">{{titulo}}</h3>
         <hr>
         <p>{{conteudo}}</p>
         <hr>

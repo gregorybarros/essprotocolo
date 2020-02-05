@@ -5,6 +5,7 @@ require('../models/Usuario')
 const Usuario = mongoose.model('usuarios')
 const bcrypt = require('bcryptjs')
 
+
 router.get('/registro', (req, res) => {
     res.render('user/registro')
 })
@@ -12,7 +13,7 @@ router.get('/registro', (req, res) => {
 router.post('/registro', (req, res) => {
     
     let erros = []
-    req.body.estado = "sp"
+
 
     if(!req.body.nome || typeof req.body.nome == undefined || req.body.nome == null) {
         erros.push({texto:'Nome invalido'})
@@ -79,6 +80,7 @@ router.post('/registro', (req, res) => {
             } else {
 
                 const novoUsuario = new Usuario({
+                    sexo:req.body.sexo,
                     nome:req.body.nome,
                     sobrenome:req.body.sobrenome,
                     email:req.body.email,
@@ -105,7 +107,6 @@ router.post('/registro', (req, res) => {
                     novoUsuario.senha = hash
 
                     novoUsuario.save().then(() => {
-                        console.log(novoUsuario.estado)
                         req.flash("success_msg", "Usuario criado com sucesso")
                         res.redirect('/')
                     }).catch((erro) => {
@@ -124,6 +125,12 @@ router.post('/registro', (req, res) => {
         })
 
     }
+})
+
+router.get('/logout', (req,res) => {
+    req.logout()
+    req.flash('success_msg', 'Logout com sucesso!')
+    res.redirect('/login')
 })
 
 module.exports = router

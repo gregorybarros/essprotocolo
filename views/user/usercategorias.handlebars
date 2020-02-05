@@ -1,18 +1,22 @@
 <h2>Lista de empresas</h2>
 <hr>
+
 <a href="/admin/categorias/add"><button class="btn btn-success">Nova empresa</button></a>
      <form action="/admin/search" method="get">
      <label class="mt-3"for="search">Pesquisar: </label>
      <input type="text" name="search" id="search" class="form-control">
      <button class="btn btn-success mt-3">Pesquisar</button>
+     </form>
 {{#each categorias}}
-    <div class="card mt-4">
+ <form class="mr-2" action="/admin/categorias/edit/{{_id}}">
+    <div class="card mt-4 pb-3">
         <div class="card-body pb-0">
             <h4>{{nome}}</h4>
             <small>{{slug}}</small><br><hr>
                   <div class="form-inline mb-2">
-                <form class="mr-2" action="/admin/categorias/edit/{{_id}}">
-                    <button class="btn btn-success">Editar</button>
+
+                   {{#if adm}} <button class="btn btn-success">Editar</button>{{/if}}
+
                 </form>
                 </div>
                 <small>Data de criacao: {{date}}</small>

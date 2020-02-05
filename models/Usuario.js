@@ -42,11 +42,11 @@ const Usuario = new Schema ({
         type:String,
         required:true,
     },
-    /*sexo:{
-        type:Number,
+    sexo:{
+        type:String,
         required:true,
         
-    },*/
+    },
     eAdmin:{
         type:Number,
         default: 0,

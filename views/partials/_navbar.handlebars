@@ -1,33 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class='mr-4'href="/"><img src="https://www.essystem.com.br/wp-content/uploads/2015/04/logoweb.png" width="160" height="67" alt="Essystem"></a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+  <a class='ml-4 pl-1 mr-1'href="/"><img src="https://www.essystem.com.br/wp-content/uploads/2015/04/logoweb.png" width="140" height="59" alt="Essystem"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse col-5" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-md-5 col-2">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Perfil<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/postagens">Protocolos</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="/categorias">Clientes</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/ajuda">Ajuda</a>
-      </li>     
-    </ul>
-    <form class="form-inline row mx-auto">
-    <a href="/login"><button class="btn btn-outline-success mr-2 ml-0" type="button">Login</button></a>
-    <a href="/usuario/registro"><button class="btn btn-sm btn-outline-secondary mt-1" type="button">Registro</button></a>
-  </form>
+  <div class="btn-group btn-group-lg mt-0 ml-5 mr-1 mt-2" role="group" aria-label="Basic example">
+  <a href="/" class="btn btn-dark pl-4">Perfil</a>
+  <a href="/postagens"class="btn btn-secondary p-2">Protocolos</a>
+  <a href="/categorias"class="btn btn-secondary p-2">Clientes</a>
+  <a href="/ajuda"class="btn btn-secondary p-2 pr-4">Ajuda</a>
+</div>
   </div>
+{{error_msg}}
+  {{#if user}}
+  <div class="btn-group btn-group-sm ml-1 mt-3 border rounded pr-5 mr-5 pt-2 mt-4" role="group" aria-label="Basic example">
+  <a href="/usuario/logout"class="btn btn-outline-danger mt-0 p-0 pr-1 pl-1">Logout</a>
+</div>
+  {{else}}
+  {{/if}}
 <div class="container ml-5 pl-5">
-   <div class="col-11 ml-5 pl-5">
-  <form class="col-12 row mx-auto p-3"action="/admin/search" method="get">
-     <input class="col form-control mr-sm-2 ml-5 text-center" id="search" name="search" type="search" placeholder="Pesquisa de protocolos" aria-label="Search">
-    <button url="/admin/search "method="get" class="btn btn-outline-success ml-2" type="submit">Pesquisar</button>
+   <div class="col-12 ml-5 pl-5">
+  <form class="col-10 row mx-auto p-0 mt-3 ml-5 pl-5"action="/admin/search" method="get">
+     <input class="col form-control mr-sm-2 ml-5 border border-secondary" id="search" name="search" type="search" placeholder="Pesquisa de protocolos" aria-label="Search">
+    <button url="/admin/search "method="get" class="btn btn-success ml-2" type="submit">Pesquisar</button>
     </form>
     </div>
     </div>
