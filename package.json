@@ -8,7 +8,7 @@
     "start": "nodemon src/index.js"
   },
   "devDependencies": {
-    "handlebars": "^4.7.3",
+    "handlebars": "^4.7.7",
     "nodemon": "^2.0.2"
   },
   "dependencies": {
